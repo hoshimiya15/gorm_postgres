@@ -32,5 +32,9 @@ func main() {
 
 	var user User
 	db.First(&user)
-	fmt.Println(user)
+	fmt.Printf("変更前：%s",user.Name)
+
+	db.Model(&user).Where("Email = ?", "xxxxxx@xxx01.com").Update("Name", "Yamada")
+	db.First(&user)
+	fmt.Printf("変更後：%s", user.Name)
 }
